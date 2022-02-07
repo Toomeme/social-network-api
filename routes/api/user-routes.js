@@ -7,7 +7,7 @@ const {
     updateUser,
     deleteUser,
     removeFriend
-} = require('../../controllers/user-controller');
+} = require('../../controllers/users-controller');
 
 router
     .route('/')
