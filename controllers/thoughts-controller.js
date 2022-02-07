@@ -7,7 +7,6 @@ const thoughtController = {
         .populate({
             path: 'users',
             select: '-__v',
-            options: [{strictPopulate: false}]
         })
         .select('-__v')
         .sort({ _id: -1 })
