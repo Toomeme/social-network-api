@@ -16,7 +16,7 @@ const userController = {
         });
       },
     
-    //get user by ID with thoughts
+    //get users by ID with thoughts
     getUserById({ params }, res) {
         Users.findOne({ _id: params.id })
            .populate({
@@ -35,7 +35,7 @@ const userController = {
         });
      },
 
-     //create user
+     //create users
      createUser({ body }, res) {
          Users.create(body)
          .then(dbUserData => res.json(dbUserData))
@@ -51,7 +51,7 @@ const userController = {
          )
          .then(dbUserData => {
              if (!dbUserData) {
-                 res.status(404).json({ message: 'No user found with this ID!' });
+                 res.status(404).json({ message: 'No users found with this ID!' });
                  return;
              }
              res.json(dbUserData);
@@ -59,12 +59,12 @@ const userController = {
          .catch(err => res.json(err));
      },
 
-     //update user
+     //update users
      updateUser({ params, body}, res) {
          Users.findOneAndUpdate({ _id: params.id}, body, { new: true, runValidators: true})
          .then(dbUserData => {
              if (!dbUserData) {
-                 res.status(404).json({ message: 'No user found with this ID!' });
+                 res.status(404).json({ message: 'No users found with this ID!' });
                  return;
              }
              res.json(dbUserData);
@@ -72,12 +72,12 @@ const userController = {
             .catch(err => res.json(err))
      },
 
-     //delete user
+     //delete users
      deleteUser({ params }, res) {
          Users.findOneAndDelete({ _id: params.id })
          .then(dbUserData => {
          if (!dbUserData) {
-             res.status(404).json({ message: 'No user found with this ID!' });
+             res.status(404).json({ message: 'No users found with this ID!' });
              return;
          }
          res.json(dbUserData);

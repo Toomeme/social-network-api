@@ -5,8 +5,9 @@ const thoughtController = {
     getAllThoughts(req, res) {
         Thoughts.find({})
         .populate({
-            path: 'user',
-            select: '-__v'
+            path: 'users',
+            select: '-__v',
+            options: [{strictPopulate: false}]
         })
         .select('-__v')
         .sort({ _id: -1 })
@@ -21,7 +22,7 @@ const thoughtController = {
     getThoughtById({ params }, res) {
         Thoughts.findOne({ _id: params.id })
             .populate({
-                path: 'user',
+                path: 'users',
                 select: '-__v'
             })
            .select('-__v')
@@ -45,7 +46,7 @@ const thoughtController = {
             })
             .then(dbUserData => {
                 if (!dbUserData) {
-                    res.status(404).json({ message: 'No user found with this username!'});
+                    res.status(404).json({ message: 'No users found with this username!'});
                     return;
                 }
                 res.json(dbUserData);
